@@ -16,7 +16,7 @@ const NavBar = () => {
           </div>
           <div className="p-1 flex justify-end" >
           <Tooltip placement={"bottom-start"} content={"Search"}>
-             <Typography><Search className="ml-5 mt-1" onClick={()=>console.log("Search")} tooltipProps/> </Typography>
+             <Typography><Search className="ml-5 mt-1" onClick={()=>console.log("Search")} /> </Typography>
           </Tooltip>
           <Tooltip placement={"bottom-start"} content={"Notification"}>
               
