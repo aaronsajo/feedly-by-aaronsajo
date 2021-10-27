@@ -1,6 +1,6 @@
 import React from 'react'
 import NewsCategory from './NewsCategory'
-const Index = () => {
+const index = () => {
     return (
         <div className=" container  flex  justify-center mx-32 w-5/6 pt-3">
             <div >
@@ -13,4 +13,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default index

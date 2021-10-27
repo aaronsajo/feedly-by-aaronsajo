@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
-import Landingpage from './landingpage/Index'
+import Landingpage from './landingpage/index'
 import NavBar from './components/Navbar';
 import ArticlePage from './ArticlePage/ArticlePage'
 
