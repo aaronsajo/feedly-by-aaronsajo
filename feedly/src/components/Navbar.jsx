@@ -9,7 +9,7 @@ const NavBar = () => {
         <div className="flex justify-between ">
           <div className="flex ">
             <div className="mt-1" >
-             <Typography style="h3" className="neeto-ui-text-gray-500">
+             <Typography style="h4" className="neeto-ui-text-gray-500">
                  Feed.ly
              </Typography>
             </div>
