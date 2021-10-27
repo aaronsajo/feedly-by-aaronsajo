@@ -25,7 +25,7 @@ const NewsCategory = ({category}) => {
       }, []);
        
       useEffect(()=>{
-        const n=posts.filter((data,i)=>i<5&&i!=0)
+        const n=posts.filter((data,i)=>i<5&&i!==0)
         setNews(n);
       },[posts])
     return (
@@ -34,9 +34,9 @@ const NewsCategory = ({category}) => {
                {category} News
             
              </Typography>
-            <BigNews title={posts[0]?.title}  author={posts[0]?.author} time={posts[0]?.time} date={posts[0]?.date} content={posts[0]?.content}/>
+            <BigNews title={posts[0]?.title}  author={posts[0]?.author} time={posts[0]?.time} date={posts[0]?.date} content={posts[0]?.content} url={posts[0]?.url} all={posts}/>
             <div className="border-b-2 pb-8">
-            <SmallNews news={news}/>
+            <SmallNews news={news} all={posts} />
             </div>
         </div>
     )

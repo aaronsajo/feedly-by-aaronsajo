@@ -1,13 +1,24 @@
-
+import React from "react";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
-import Landingpage from './landingpage'
+import Landingpage from './landingpage/index'
 import NavBar from './components/Navbar';
+import ArticlePage from './ArticlePage/ArticlePage'
+
 function App() {
   return (
-    <div className="App">
-      <NavBar/>
-     <Landingpage />
-    </div>
+    
+      <Router>
+         <NavBar/>
+         <div>
+         <Switch>
+             <Route exact path="/" component={Landingpage} />
+             <Route exact path="/articles" component={ArticlePage} /> 
+         </Switch>
+         </div>
+    </Router>
+     
+    
   );
 }
 
