@@ -1,8 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import { Search, Filter,Notification} from "@bigbinary/neeto-icons"
 import { Typography, Button ,Tooltip} from "@bigbinary/neetoui/v2"
+import SidePane from "./SidePane";
 
-const NavBar = () => {
+const NavBar = ({topic,setTopic}) => {
+    const [showFlilter,setShowFilter]=useState(false)
+    
   return (
     <nav className="bg-white shadow p-2 h-16">
       <div className="py-2 mx-3">
@@ -30,11 +34,13 @@ const NavBar = () => {
               style="secondary"
               icon={Filter}
               size="large"
+              onClick={()=>setShowFilter(f=>!f)}
             />
             </Tooltip>
-            
+            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter} topic={topic} setTopic={setTopic}/>
             
           </div>
+          
         </div>
       </div>
     </nav>
