@@ -1,8 +1,8 @@
 import React from 'react'
-import NewsCategory from './NewsCategory'
+
 
 function Timestamp({type,author,time,date}) {
-    if(type=="big")
+    if(type==="big")
     {return (
         <div className="text-right neeto-ui-text-gray-500 pt-3 pb-3">
             {author+" at "+time+" on "+date }
