@@ -10,7 +10,7 @@ import ErrorBoundry from "./components/ErrorBoundry";
 
 
 function App() {
-  
+  const [archive,setArchive]= useState(false);
   const [topic,setTopic] = useState(["National","Sports","Business"]);
   
 
@@ -20,11 +20,11 @@ function App() {
     
       <Router>
         
-        <NavBar  setTopic={setTopic} topic={topic}/>
+        <NavBar  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
          <div>
          <Switch>
              <Route exact path="/" >
-                  <Landingpage topic={topic} setTopic={setTopic} />
+                  <Landingpage topic={topic} setTopic={setTopic} archive={archive} />
               </Route>
              <Route exact path="/articles/:id" component={ArticlePage} /> 
              <Route path="*" component={ErrorBoundry} />

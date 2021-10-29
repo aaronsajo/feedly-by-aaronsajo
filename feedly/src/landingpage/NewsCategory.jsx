@@ -6,7 +6,7 @@ import SmallNews from './SmallNews';
 import BigNews from './BigNews';
 
 
-const NewsCategory = ({category}) => {
+const NewsCategory = ({category,archive,topic}) => {
     const [posts, setPosts] = useState([]);
     const [news, setNews] = useState([]);
     
@@ -21,6 +21,13 @@ const NewsCategory = ({category}) => {
           const res = await fetch("https://inshortsapi.vercel.app/news?category="+str);
           const dat = await res.json();
           fd = await dat["data"];
+          if(!archive)
+          { const today = new Date().toDateString()
+            fd=fd.filter((ele)=>{
+              let newsDate = new Date(ele.date.slice(0,11)).toDateString();
+              return today===newsDate?true:false
+            }
+          )}
           setPosts(fd)      
           const n=fd.filter((data,i)=>i<5&&i!==0);
           setNews(n);
@@ -31,7 +38,7 @@ const NewsCategory = ({category}) => {
         return(() => {
           
         })
-      }, []);
+      }, [topic]);
       
       
      

@@ -5,7 +5,7 @@ import { Typography, Button ,Tooltip} from "@bigbinary/neetoui/v2"
 import SidePane from "./SidePane";
 import Subscribe from "./Subscribe";
 
-const NavBar = ({setTopic,topic}) => {
+const NavBar = ({setTopic,topic,archive,setArchive}) => {
     const [showFlilter,setShowFilter]=useState(false)
     const [showSub,setShowSub]=useState(false)
     
@@ -39,7 +39,7 @@ const NavBar = ({setTopic,topic}) => {
               onClick={()=>setShowFilter(f=>!f)}
             />
             </Tooltip>
-            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic}/>
+            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
             <Subscribe showSub={showSub} setShowSub={setShowSub} />
           </div>
           
