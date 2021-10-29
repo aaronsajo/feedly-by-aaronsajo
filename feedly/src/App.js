@@ -6,7 +6,7 @@ import Landingpage from './landingpage/index'
 import NavBar from './components/Navbar';
 import ArticlePage from './ArticlePage/ArticlePage'
 import ErrorBoundry from "./components/ErrorBoundry";
-
+import { ToastContainer } from "react-toastify";
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
       <Router>
         
         <NavBar  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
+        <ToastContainer />
          <div>
          <Switch>
              <Route exact path="/" >

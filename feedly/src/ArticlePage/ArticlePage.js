@@ -5,16 +5,21 @@ import { Copy } from "@bigbinary/neeto-icons";
 import Timestamp from '../landingpage/Timestamp';
 import SmallNews from '../landingpage/SmallNews';
 import { Toastr } from "@bigbinary/neetoui/v2";
+
 function ArticlePage() {
     const data =useLocation().state
     
-    const allNews = data.all
-    const subNews = allNews.filter((d,i)=>d.url!==data.url &&i<5)
+    const allNews = data?.all
+    const subNews= allNews.filter((d,i)=>d.url!==data?.url &&i<5)
+    
     
     async function copy(){ 
         try{
+            console.log()
         await navigator.clipboard.writeText(data?.readMoreUrl)
-        Toastr.info("Copied to clipboard");
+        
+        Toastr.info("Copied to clipboard ")
+         
         }catch(err){
             alert("Error while copying");
         }
@@ -27,7 +32,7 @@ function ArticlePage() {
             <div>
                 <Typography style="h1" className="tracking-wider ">
                     {data?.title }<Tooltip placement={"bottom-start"} content={"Copy URL"}>
-                        <div className="inline-block"> <Copy onClick={()=>copy()} /></div>
+                        <div className="inline-block" onClick={ ()=>{navigator.clipboard.writeText(data?.readMoreUrl);Toastr.info("Copied to clipboard ")}}> <Copy  /></div>
                  </Tooltip>
                 </Typography>
             </div>
@@ -50,7 +55,7 @@ function ArticlePage() {
 
                 Proin lacinia sed lectus eu molestie. Etiam vel erat urna. Maecenas laoreet aliquet urna sed lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla pellentesque non ante vel pellentesque. Nulla at maximus elit, sed viverra est. Curabitur vitae hendrerit massa. Sed finibus mollis tortor, vel vulputate nulla blandit quis. In purus eros, aliquet vestibulum quam ac, tempor malesuada lacus.
             </Typography>
-            <SmallNews news={subNews} all={allNews} />
+            <SmallNews news={subNews} all={allNews} /> 
         </div>
     )
 }

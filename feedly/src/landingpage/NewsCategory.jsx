@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useState, useEffect , useContext} from "react";
 import { Typography} from "@bigbinary/neetoui/v2"
 
@@ -31,7 +32,7 @@ const NewsCategory = ({category,archive,topic}) => {
           setPosts(fd)      
           const n=fd.filter((data,i)=>i<5&&i!==0);
           setNews(n);
-          console.log("hello");
+          
         };
         fetchPosts();
         
@@ -44,7 +45,7 @@ const NewsCategory = ({category,archive,topic}) => {
      
      
       
-    return (
+    return  (
         <div className="px-12 py-8 ">
             <Typography style="h2" className="flex pb-2 mr-0" >
                {category} News

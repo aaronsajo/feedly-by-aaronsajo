@@ -4,10 +4,12 @@ import { Search, Filter,Notification} from "@bigbinary/neeto-icons"
 import { Typography, Button ,Tooltip} from "@bigbinary/neetoui/v2"
 import SidePane from "./SidePane";
 import Subscribe from "./Subscribe";
+import SearchNews from "./SearchNews";
 
 const NavBar = ({setTopic,topic,archive,setArchive}) => {
     const [showFlilter,setShowFilter]=useState(false)
     const [showSub,setShowSub]=useState(false)
+    const  [showSearch,setShowSearch] = useState(false);
     
   return (
     <nav className="bg-white shadow p-2 h-16">
@@ -22,7 +24,7 @@ const NavBar = ({setTopic,topic,archive,setArchive}) => {
           </div>
           <div className="p-1 flex justify-end" >
           <Tooltip placement={"bottom-start"} content={"Search"}>
-             <Typography><Search className="ml-5 mt-1" onClick={()=>console.log("hello")} /> </Typography>
+             <Typography><Search className="ml-5 mt-1" onClick={()=>setShowSearch(s=>!s)} /> </Typography>
           </Tooltip>
           <Tooltip placement={"bottom-start"} content={"Notification"}>
               
@@ -41,6 +43,8 @@ const NavBar = ({setTopic,topic,archive,setArchive}) => {
             </Tooltip>
             <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
             <Subscribe showSub={showSub} setShowSub={setShowSub} />
+             {showSearch && <SearchNews topic={topic} showSearch={showSearch} setShowSearch={setShowSearch}/> }
+             {showSearch&&console.log("Search")}
           </div>
           
         </div>
