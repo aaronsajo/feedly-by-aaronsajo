@@ -3,9 +3,11 @@ import { useState } from "react";
 import { Search, Filter,Notification} from "@bigbinary/neeto-icons"
 import { Typography, Button ,Tooltip} from "@bigbinary/neetoui/v2"
 import SidePane from "./SidePane";
+import Subscribe from "./Subscribe";
 
-const NavBar = ({topic,setTopic}) => {
+const NavBar = ({setTopic,topic}) => {
     const [showFlilter,setShowFilter]=useState(false)
+    const [showSub,setShowSub]=useState(false)
     
   return (
     <nav className="bg-white shadow p-2 h-16">
@@ -20,11 +22,11 @@ const NavBar = ({topic,setTopic}) => {
           </div>
           <div className="p-1 flex justify-end" >
           <Tooltip placement={"bottom-start"} content={"Search"}>
-             <Typography><Search className="ml-5 mt-1" onClick={()=>console.log("Search")} /> </Typography>
+             <Typography><Search className="ml-5 mt-1" onClick={()=>console.log("hello")} /> </Typography>
           </Tooltip>
           <Tooltip placement={"bottom-start"} content={"Notification"}>
               
-             <Typography><Notification  className="ml-5 mt-1" onClick={()=>console.log("Notification")}/></Typography>
+             <Typography><Notification  className="ml-5 mt-1" onClick={()=>setShowSub(s=>!s)}/></Typography>
           </Tooltip>
           
             <Tooltip placement={"bottom-start"} content={"Filter"}>
@@ -37,8 +39,8 @@ const NavBar = ({topic,setTopic}) => {
               onClick={()=>setShowFilter(f=>!f)}
             />
             </Tooltip>
-            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter} topic={topic} setTopic={setTopic}/>
-            
+            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic}/>
+            <Subscribe showSub={showSub} setShowSub={setShowSub} />
           </div>
           
         </div>

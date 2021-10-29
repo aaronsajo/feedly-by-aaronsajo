@@ -1,36 +1,48 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
-import { Typography} from "@bigbinary/neetoui/v2"
+import { Typography,Tooltip} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import Timestamp from '../landingpage/Timestamp';
 import SmallNews from '../landingpage/SmallNews';
+import { Toastr } from "@bigbinary/neetoui/v2";
 function ArticlePage() {
     const data =useLocation().state
     
     const allNews = data.all
     const subNews = allNews.filter((d,i)=>d.url!==data.url &&i<5)
     
+    async function copy(){ 
+        try{
+        await navigator.clipboard.writeText(data?.readMoreUrl)
+        Toastr.info("Copied to clipboard");
+        }catch(err){
+            alert("Error while copying");
+        }
+    }
+    
+
+    
     return (
         <div className="container w-5/6 mx-32">
             <div>
-                <Typography style="h1" className="tracking-wider">
-                    {data?.title} <Copy/>
-                 
+                <Typography style="h1" className="tracking-wider ">
+                    {data?.title }<Tooltip placement={"bottom-start"} content={"Copy URL"}>
+                        <div className="inline-block"> <Copy onClick={()=>copy()} /></div>
+                 </Tooltip>
                 </Typography>
             </div>
-            {data.url}
+            
             <Timestamp type="small" author={data?.author} time={data?.time} date={data?.date} />
             
                 <img src="https://picsum.photos/526/263 " alt-="Image" className="mx-auto py-8" />
             
             <Typography style="body1" className="text-left pb-4">
             {data?.content}
-
             </Typography>
             <Typography style="body1" className="text-left pb-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit lectus et nisi semper, ac porttitor est vehicula. Donec quis sollicitudin nulla. Donec tincidunt diam a ante egestas ornare. Nam vestibulum sapien ac mi pretium, ac ultricies nisl hendrerit. Proin blandit semper massa sit amet euismod. Integer ornare lacus at turpis mattis dignissim. Curabitur vestibulum scelerisque lacus sed tincidunt.
              </Typography>   
-                <Typography style="body1" className="text-left pb-4 ">
+            <Typography style="body1" className="text-left pb-4 ">
                 Cras nec faucibus mauris, eget bibendum nibh. Ut venenatis cursus tristique. Sed sit amet augue tempus, eleifend felis ac, viverra massa. Proin rutrum commodo leo, eget tincidunt nisi molestie vitae. Maecenas sit amet lacus mollis, eleifend justo in, lacinia neque. Duis imperdiet semper turpis in dictum. Fusce lectus ex, pretium a dolor non, pharetra iaculis tellus. Suspendisse vulputate molestie ex at finibus. Ut ut ante eu magna pharetra dignissim. Etiam ornare tortor vel volutpat tincidunt. Praesent eleifend a sem a dapibus. Curabitur blandit arcu purus, ac scelerisque risus luctus sed.
             </Typography>
             <Typography style="body1" className="text-left pb-4">

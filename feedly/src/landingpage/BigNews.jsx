@@ -3,7 +3,8 @@ import Timestamp from './Timestamp'
 import { Typography} from "@bigbinary/neetoui/v2"
 import { BrowserRouter as Router,Link } from "react-router-dom";
 function BigNews(props) {
-   const  {title,author,time,date,content}=props
+   const  {title,author,time,date,content,url}=props
+   const  slug= url?.slice(33);
     return (
         <div>
             <div className="flex border-b-2 pb-6">
@@ -24,8 +25,8 @@ function BigNews(props) {
 
                <Link
                to={{
-                pathname: "/articles",
-                state: { ...props}
+                pathname: `/articles/${slug}`,
+                state: {... props}
               }}
                 className="flex text-left mt-3 neeto-ui-text-info">Read More
                </Link>
