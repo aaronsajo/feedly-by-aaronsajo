@@ -44,7 +44,7 @@ const NavBar = ({setTopic,topic,archive,setArchive}) => {
             <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
             <Subscribe showSub={showSub} setShowSub={setShowSub} />
              {showSearch && <SearchNews topic={topic} showSearch={showSearch} setShowSearch={setShowSearch}/> }
-             {showSearch&&console.log("Search")}
+             
           </div>
           
         </div>

@@ -44,17 +44,19 @@ const NewsCategory = ({category,archive,topic}) => {
       
      
      
-      
+    
     return  (
         <div className="px-12 py-8 ">
             <Typography style="h2" className="flex pb-2 mr-0" >
                {category} News
             
              </Typography>
+             {(posts[0]==undefined) &&<div><h1>No {category} News Today!</h1><h2>Change filter for Archive News</h2></div>}
+            { !(posts[0]==undefined) && <div>
             <BigNews title={posts[0]?.title}  author={posts[0]?.author} time={posts[0]?.time} date={posts[0]?.date} content={posts[0]?.content} url={posts[0]?.url} readMoreUrl={posts[0]?.readMoreUrl}all={posts}/>
             <div className="border-b-2 pb-8">
-            <SmallNews news={news} all={posts} />
-            </div>
+            <SmallNews news={news} all={posts} /></div>
+            </div>}
         </div>
     )
 
