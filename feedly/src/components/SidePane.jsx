@@ -4,7 +4,7 @@ import { Pane ,Typography, Button ,Checkbox} from "@bigbinary/neetoui/v2";
 import {Check} from '@bigbinary/neeto-icons'
 import {  Link } from "react-router-dom";
 
-function SidePane({showFilter,setShowFilter,setTopic,topic}) {
+function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) {
     const [all,setAll]=useState(false);
     const [science,setScience]=useState(false);
     const [business,setBusiness]=useState(true);
@@ -12,6 +12,7 @@ function SidePane({showFilter,setShowFilter,setTopic,topic}) {
     const [sports,setSports]=useState(true);
     const [world,setWorld]=useState(false);
     const [technology,setTechnology]=useState(false);
+    const [localArchive,setLocalArchive] = useState(false);
     function onSave(){
         let t = [];
         if(all)
@@ -30,12 +31,16 @@ function SidePane({showFilter,setShowFilter,setTopic,topic}) {
         if(technology)
         {  t.push("Technology");}
         
-        
+        setArchive(localArchive);
         setTopic(t);
         setShowFilter(false);
          } 
          useEffect(() => {
-           
+          setLocalArchive(archive);
+          if(!topic.includes("All"))
+          {
+            setAll(false)
+          }
           if(!topic.includes("Science"))
           {
             setScience(false)
@@ -65,12 +70,16 @@ function SidePane({showFilter,setShowFilter,setTopic,topic}) {
            }
          }, [topic])
 
-         useEffect(() => {
-           
+        useEffect(() => {
+          setLocalArchive(archive);
+          if(topic.includes("All"))
+          {
+            setAll(true)
+          }
           if(topic.includes("Science"))
           {
             setScience(true)
-          }else
+          }
           if(topic.includes("Business"))
           {
             setBusiness(true)
@@ -91,9 +100,38 @@ function SidePane({showFilter,setShowFilter,setTopic,topic}) {
           {
             setTechnology(true)
           }
+          if(!topic.includes("All"))
+          {
+            setAll(false)
+          }
+          if(!topic.includes("Science"))
+          {
+            setScience(false)
+          }
+          if(!topic.includes("Business"))
+          {
+            setBusiness(false)
+          }
+          if(!topic.includes("National"))
+          {
+            setNational(false)
+          }
+          if(!topic.includes("Sports"))
+          {
+            setSports(false)
+          }
+          if(!topic.includes("World"))
+          {
+            setWorld(false)
+          }
+          if(!topic.includes("Technology"))
+          {
+            setTechnology(false)
+          }
            return () => {
              
            }
+           
          }, [showFilter])
          
          
@@ -152,6 +190,13 @@ function SidePane({showFilter,setShowFilter,setTopic,topic}) {
           checked={technology}
           label="Technology"
           onChange={()=>setTechnology(s=>!s)}
+          className="p-5"
+          
+          />
+           <Checkbox 
+          checked={localArchive}
+          label="Include archived articles."
+          onChange={()=>setLocalArchive(s=>!s)}
           className="p-5"
           
           />

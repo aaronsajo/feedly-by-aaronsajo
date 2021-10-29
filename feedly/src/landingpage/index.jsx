@@ -3,7 +3,7 @@ import NewsCategory from './NewsCategory'
 import { Tag } from "@bigbinary/neetoui/v2";
 import NoCategery from './NoCategery';
 
-const Landingpage = ({topic,setTopic}) => {
+const Index = ({topic,setTopic,archive}) => {
      function noRefCheck(ele){
         setTopic(topic.filter((item)=>item!=ele))
      }
@@ -36,7 +36,7 @@ const Landingpage = ({topic,setTopic}) => {
             <div >
                 
                 {topic.map((d,i)=>(
-                  <NewsCategory key={i} category={d} />  
+                  <NewsCategory key={i} category={d} archive={archive} topic={topic}/>  
                 ))}
                
                
@@ -47,4 +47,4 @@ const Landingpage = ({topic,setTopic}) => {
     )
 }
 
-export default Landingpage
+export default Index
