@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Pane ,Typography, Button ,Checkbox} from "@bigbinary/neetoui/v2";
 import {Check} from '@bigbinary/neeto-icons'
+import {  Link } from "react-router-dom";
 
-
-function SidePane({showFilter,setShowFilter,topic,setTopic}) {
+function SidePane({showFilter,setShowFilter,setTopic,topic}) {
     const [all,setAll]=useState(false);
     const [science,setScience]=useState(false);
     const [business,setBusiness]=useState(true);
@@ -15,10 +15,8 @@ function SidePane({showFilter,setShowFilter,topic,setTopic}) {
     function onSave(){
         let t = [];
         if(all)
-        {
-         t=["Science","Business","National","Sports","World","Technology"]
-        }else
-        {
+        { t.push("All")}
+        
         if(science)
          { t.push("Science")}
         if(business)
@@ -31,15 +29,78 @@ function SidePane({showFilter,setShowFilter,topic,setTopic}) {
         {  t.push("World")}
         if(technology)
         {  t.push("Technology");}
-        }
-        console.log(t)
+        
+        
         setTopic(t);
         setShowFilter(false);
-    }
+         } 
+         useEffect(() => {
+           
+          if(!topic.includes("Science"))
+          {
+            setScience(false)
+          }
+          if(!topic.includes("Business"))
+          {
+            setBusiness(false)
+          }
+          if(!topic.includes("National"))
+          {
+            setNational(false)
+          }
+          if(!topic.includes("Sports"))
+          {
+            setSports(false)
+          }
+          if(!topic.includes("World"))
+          {
+            setWorld(false)
+          }
+          if(!topic.includes("Technology"))
+          {
+            setTechnology(false)
+          }
+           return () => {
+             
+           }
+         }, [topic])
+
+         useEffect(() => {
+           
+          if(topic.includes("Science"))
+          {
+            setScience(true)
+          }else
+          if(topic.includes("Business"))
+          {
+            setBusiness(true)
+          }
+          if(topic.includes("National"))
+          {
+            setNational(true)
+          }
+          if(topic.includes("Sports"))
+          {
+            setSports(true)
+          }
+          if(topic.includes("World"))
+          {
+            setWorld(true)
+          }
+          if(topic.includes("Technology"))
+          {
+            setTechnology(true)
+          }
+           return () => {
+             
+           }
+         }, [showFilter])
+         
+         
     return (
         <div className="w-full">
       
-
+      
       <Pane isOpen={showFilter} onClose={() => setShowFilter(false)}>
         <Pane.Header>
           <Typography style="h2" weight="semibold">
@@ -47,52 +108,75 @@ function SidePane({showFilter,setShowFilter,topic,setTopic}) {
           </Typography>
         </Pane.Header>
         <Pane.Body>
+           
           <Typography style="h4">Category</Typography>
+          <div>
           <Checkbox 
           className="mt-2.5"
           checked={all}
           label="All"
           onChange={()=>setAll(s=>!s)}
+          className="p-5"
           />
           <Checkbox 
           checked={science}
           label="Science"
           onChange={()=>setScience(s=>!s)}
+          className="p-5"
           />
            <Checkbox 
           checked={business}
           label="Business"
           onChange={()=>setBusiness(s=>!s)}
+          className="p-5"
           />
            <Checkbox 
           checked={national}
           label="National"
           onChange={()=>setNational(s=>!s)}
+          className="p-5"
           />
            <Checkbox 
           checked={sports}
           label="Sports"
           onChange={()=>setSports(s=>!s)}
+          className="p-5"
           />
            <Checkbox 
           checked={world}
           label="World"
           onChange={()=>setWorld(s=>!s)}
+          className="p-5"
           />
            <Checkbox 
           checked={technology}
           label="Technology"
           onChange={()=>setTechnology(s=>!s)}
+          className="p-5"
+          
           />
           
+          </div>
+          <div className="w-full ">
+
+          <hr/>
+          </div>
         </Pane.Body>
         <Pane.Footer className="flex items-center space-x-2">
-          <Button
+        <Link
+               to={{
+                pathname: `/`
+                
+                   }}
+                >
+                  <Button
             icon={Check}
             size="large"
             label="Save Changes"
             onClick={() => onSave()}
           />
+               </Link>
+          
           <Button
             style="text"
             size="large"

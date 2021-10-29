@@ -1,7 +1,7 @@
 import React from 'react'
 import Timestamp from './Timestamp'
 import { Typography} from "@bigbinary/neetoui/v2"
-import { BrowserRouter as Router,Link ,Switch} from "react-router-dom";
+import {  Link } from "react-router-dom";
 function SmallNews({news,all}) {
     
     return (
@@ -23,7 +23,7 @@ function SmallNews({news,all}) {
                
                <Link
                to={{
-                pathname: "/articles",
+                pathname: `/articles/${data.url.slice(33)}`,
                 state: {...data,all}
                    }}
                 className="flex text-left mt-3 neeto-ui-text-info">Read More

@@ -1,19 +1,50 @@
 import React from 'react'
 import NewsCategory from './NewsCategory'
-const index = ({topic}) => {
+import { Tag } from "@bigbinary/neetoui/v2";
+import NoCategery from './NoCategery';
+
+const Landingpage = ({topic,setTopic}) => {
+     function noRefCheck(ele){
+        setTopic(topic.filter((item)=>item!=ele))
+     }
+
+     if(topic.length===0){
+         return(
+             <NoCategery/>
+         )
+     }
     
     return (
-        <div className=" container  flex  justify-center mx-32 w-5/6 pt-3">
+        <div>
+            
+        
+        <div className=" container   mx-32 w-5/6 pt-3" >
+        <div className="ml-8">
+           {
+               topic.map((ele,i)=>(
+                <Tag
+                
+                key={i}
+                label={ele}
+                onClose={()=>noRefCheck(ele)}
+                className="ml-4"
+              />
+               ))
+           }
+            </div>
+        <div className="flex  justify-center">
             <div >
                 
                 {topic.map((d,i)=>(
-                  <NewsCategory key={i} category={d}/>  
+                  <NewsCategory key={i} category={d} />  
                 ))}
                
                
             </div>
+            </div>
+        </div>
         </div>
     )
 }
 
-export default index
+export default Landingpage
