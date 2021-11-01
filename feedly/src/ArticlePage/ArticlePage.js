@@ -6,29 +6,18 @@ import Timestamp from '../landingpage/Timestamp';
 import SmallNews from '../landingpage/SmallNews';
 import { Toastr } from "@bigbinary/neetoui/v2";
 
-function ArticlePage() {
+const ArticlePage=() =>{
     const data =useLocation().state
     
     const allNews = data?.all
-    const subNews= allNews.filter((d,i)=>d.url!==data?.url &&i<5)
+    const nonfilter= allNews.filter((d,i)=>d.url!==data?.url &&i<5)
+    const subNews = nonfilter.filter((d,i)=>i<4);
     
-    
-    async function copy(){ 
-        try{
-            console.log()
-        await navigator.clipboard.writeText(data?.readMoreUrl)
-        
-        Toastr.info("Copied to clipboard ")
-         
-        }catch(err){
-            alert("Error while copying");
-        }
-    }
     
 
     
     return (
-        <div className="container w-5/6 mx-32">
+        <div className="container w-2/3 ml-40 mr-20 pl-20">
             <div>
                 <Typography style="h1" className="tracking-wider ">
                     {data?.title }<Tooltip placement={"bottom-start"} content={"Copy URL"}>

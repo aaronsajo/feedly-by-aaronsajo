@@ -2,7 +2,7 @@ import React from 'react'
 import Timestamp from './Timestamp'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {  Link } from "react-router-dom";
-function SmallNews({news,all}) {
+const SmallNews=({news,all})=> {
     
     return (
         <div className="grid grid-cols-2 gap-x-60 mt-2.5">

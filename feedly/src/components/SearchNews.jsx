@@ -1,29 +1,37 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,useCallback } from "react";
 import React from 'react';
+import {debounce} from 'lodash'
 import ReactDOM from 'react-dom'
 import {  Link } from "react-router-dom";
 import { Button,Input } from "@bigbinary/neetoui/v2";
 
 
-function SearchNews({topic,showSearch,setShowSearch}) {
+const SearchNews=({topic,showSearch,setShowSearch,archive}) =>{
     
     
     const [searchText, setSearchText] = useState("");
     const [allNews,setAllNews] = useState({});  
     useEffect(() => {
-        
-        const fetchPosts = async () => {
-              
-        let d={}; 
-        
+        let respFil
+        const fetchPosts = async () => {         
+        let filteredNews={};       
         topic.forEach(async (item)=>{
             
             const resp = await fetch("https://inshortsapi.vercel.app/news?category="+item.toLocaleLowerCase());
             
             const res = await resp.json();
-            d[res.category] = await res.data;
+            respFil= res.data
+            if(!archive)
+          { const today = new Date().toDateString()
+            respFil=respFil.filter((ele)=>{
+              let newsDate = new Date(ele.date.slice(0,11)).toDateString();
+              return today===newsDate?true:false
+            }
+          )}
+          
+            filteredNews[res.category] = await respFil;
            
-            setAllNews(d);
+            setAllNews(filteredNews);
         })
         };
         fetchPosts();
@@ -48,6 +56,7 @@ function SearchNews({topic,showSearch,setShowSearch}) {
     const getCatDat=(cat)=>{
         return allNews[cat?.toLowerCase()];
      }
+     const debounceVar=useCallback(debounce((data,text)=>getSearchData(data,text), 1000), []);
    
    if(!showSearch) return null
     
@@ -68,7 +77,7 @@ function SearchNews({topic,showSearch,setShowSearch}) {
        
        {    searchText &&  <div className="mt-2 max-h-72 overflow-y-auto w-1/2 bg-white rounded-sm border-b-2">
           {
-            allNews && getSearchData(allNews,searchText).map((e,i)=>(
+            allNews && debounceVar(allNews,searchText)?.map((e,i)=>(
              
              <div key={i} className="m-2 p-2 bg-gray-100 rounded-sm border-b-2 flex justify-between items-center"  > 
              

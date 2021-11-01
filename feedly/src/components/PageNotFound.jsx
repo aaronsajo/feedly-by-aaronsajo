@@ -3,11 +3,12 @@ import { Typography, Button } from "@bigbinary/neetoui/v2"
 import { Home} from "@bigbinary/neeto-icons";
 import { useHistory } from "react-router-dom";
 import img2 from "./picture/Error.png"
-function ErrorBoundry() {
+const PageNotFound=()=> {
     let history = useHistory();
-    function home(){
+    const  home=()=>{
         history.push(`/`);
     }
+    
     return (
         <div className=" flex flex-col p-20 items-center">
             <img  src={img2} alt="Error Page"/>
@@ -24,4 +25,4 @@ function ErrorBoundry() {
     )
 }
 
-export default ErrorBoundry
+export default PageNotFound
