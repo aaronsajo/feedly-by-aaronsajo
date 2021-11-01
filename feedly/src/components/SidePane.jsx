@@ -5,17 +5,7 @@ import {Check} from '@bigbinary/neeto-icons'
 import {  Link } from "react-router-dom";
 
 const  SidePane=({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) =>{
-    // const [all,setAll]=useState(false);
-    // const [science,setScience]=useState(false);
-    // const [business,setBusiness]=useState(true);
-    // const [national,setNational]=useState(true);
-    // const [sports,setSports]=useState(true);
-    // const [world,setWorld]=useState(false);
-    // const [technology,setTechnology]=useState(false);
-    // const [polictis,setPolicitcs]=useState(false);
-    // const [startup,setStartup]=useState(false);
-    // const [entertainment,setEntertainment]=useState(false);
-    // const [automobile,setAutomobile]=useState(false);
+  
     const  [newsHeadings,setNewsHeading] = useState({
       all:false,
       national:true,
