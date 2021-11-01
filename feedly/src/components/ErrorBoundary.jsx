@@ -11,18 +11,18 @@ class ErrorBoundary extends React.Component {
     }
   
     static getDerivedStateFromError(error) {
-      // Update state so the next render will show the fallback UI.
+      
       return { hasError: true };
     }
   
     componentDidCatch(error, errorInfo) {
-      // You can also log the error to an error reporting service
+   
       console.log(error, errorInfo);
     }
   
     render() {
       if (this.state.hasError) {
-        // You can render any custom fallback UI
+       
         return <div className=" flex flex-col p-20 items-center">
         <img  src={img2} alt="Error Page"/>
     <Typography style="h3" className="px-2 w-3/12 text-center" >You have landed somewhere unknown</Typography>     
