@@ -22,16 +22,15 @@ const NavBar = ({setTopic,topic,archive,setArchive}) => {
              </Typography>
             </div>
           </div>
-          <div className="p-1 flex justify-end" >
+         <div className="p-1 flex justify-end" >
           <Tooltip placement={"bottom-start"} content={"Search"}>
              <Typography><Search className="ml-5 mt-1" onClick={()=>setShowSearch(s=>!s)} /> </Typography>
           </Tooltip>
-          <Tooltip placement={"bottom-start"} content={"Notification"}>
-              
+          <Tooltip placement={"bottom-start"} content={"Notification"}>  
              <Typography><Notification  className="ml-5 mt-1" onClick={()=>setShowSub(s=>!s)}/></Typography>
           </Tooltip>
           
-            <Tooltip placement={"bottom-start"} content={"Filter"}>
+          <Tooltip placement={"bottom-start"} content={"Filter"}>
             <Button
               className="ml-5"
               label ="Filter"
@@ -40,12 +39,12 @@ const NavBar = ({setTopic,topic,archive,setArchive}) => {
               size="large"
               onClick={()=>setShowFilter(f=>!f)}
             />
-            </Tooltip>
-            <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
-            <Subscribe showSub={showSub} setShowSub={setShowSub} />
-             {showSearch && <SearchNews topic={topic} showSearch={showSearch} setShowSearch={setShowSearch}/> }
+          </Tooltip>
+          <SidePane showFilter={showFlilter} setShowFilter={setShowFilter}  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
+          <Subscribe showSub={showSub} setShowSub={setShowSub} />
+          {showSearch && <SearchNews topic={topic} showSearch={showSearch} setShowSearch={setShowSearch} archive={archive}/> }
              
-          </div>
+         </div>
           
         </div>
       </div>

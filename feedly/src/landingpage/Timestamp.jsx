@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Timestamp({type,author,time,date}) {
+const Timestamp=({type,author,time,date})=> {
     if(type==="big")
     {return (
         <div className="text-right neeto-ui-text-gray-500 pt-3 pb-3">

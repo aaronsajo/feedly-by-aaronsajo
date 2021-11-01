@@ -3,12 +3,12 @@ import { Modal,Button,Input,Textarea  } from "@bigbinary/neetoui/v2";
 import { useState } from "react";
 import { Typography } from "@bigbinary/neetoui/v2"
 
-function AddCategory({write,setWrite}) {
+const AddCategory=({write,setWrite}) =>{
      const [name,setName]= useState("");
      const [email,setEmail]= useState("");
      const [message,setMessage]= useState("");
      
-     function postReq(){
+     const postReq=()=>{
         fetch('https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a',{
             method : 'POST',
             headers : {"Content-Type": "application/json"},

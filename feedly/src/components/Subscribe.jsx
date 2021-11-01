@@ -5,9 +5,9 @@ import pic from "./picture/img1.png"
 
 
 
-function Subscribe({showSub,setShowSub}) {
+const Subscribe=({showSub,setShowSub})=> {
     const [email,setEmail]=useState("");
-    function postReq(){
+    const postReq=()=>{
         fetch('	https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a',{
             method : 'POST',
             headers : {"Content-Type": "application/json"},

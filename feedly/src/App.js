@@ -5,21 +5,21 @@ import './App.css';
 import Landingpage from './landingpage/index'
 import NavBar from './components/Navbar';
 import ArticlePage from './ArticlePage/ArticlePage'
-import ErrorBoundry from "./components/ErrorBoundry";
+import PageNotFound from "./components/PageNotFound";
 import { ToastContainer } from "react-toastify";
+import ErrorBoundary from "./components/ErrorBoundary";
 
-
-function App() {
+const App =()=> {
   const [archive,setArchive]= useState(false);
-  const [topic,setTopic] = useState(["National","Sports","Business"]);
+  const [topic,setTopic] = useState(["National","Sports","Business","World"]);
   
 
  
  
   return (
     
-      <Router>
-        
+    <Router>
+      <ErrorBoundary> 
         <NavBar  setTopic={setTopic} topic={topic} archive={archive} setArchive={setArchive}/>
         <ToastContainer />
          <div>
@@ -28,10 +28,10 @@ function App() {
                   <Landingpage topic={topic} setTopic={setTopic} archive={archive} />
               </Route>
              <Route exact path="/articles/:id" component={ArticlePage} /> 
-             <Route path="*" component={ErrorBoundry} />
+             <Route path="*" component={PageNotFound} />
          </Switch>
          </div>
-        
+      </ErrorBoundary> 
     </Router>
      
     

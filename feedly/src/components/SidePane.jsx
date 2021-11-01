@@ -4,32 +4,42 @@ import { Pane ,Typography, Button ,Checkbox} from "@bigbinary/neetoui/v2";
 import {Check} from '@bigbinary/neeto-icons'
 import {  Link } from "react-router-dom";
 
-function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) {
-    const [all,setAll]=useState(false);
-    const [science,setScience]=useState(false);
-    const [business,setBusiness]=useState(true);
-    const [national,setNational]=useState(true);
-    const [sports,setSports]=useState(true);
-    const [world,setWorld]=useState(false);
-    const [technology,setTechnology]=useState(false);
+const  SidePane=({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) =>{
+    // const [all,setAll]=useState(false);
+    // const [science,setScience]=useState(false);
+    // const [business,setBusiness]=useState(true);
+    // const [national,setNational]=useState(true);
+    // const [sports,setSports]=useState(true);
+    // const [world,setWorld]=useState(false);
+    // const [technology,setTechnology]=useState(false);
+    // const [polictis,setPolicitcs]=useState(false);
+    // const [startup,setStartup]=useState(false);
+    // const [entertainment,setEntertainment]=useState(false);
+    // const [automobile,setAutomobile]=useState(false);
+    const  [newsHeadings,setNewsHeading] = useState({
+      all:false,
+      national:true,
+      business:true,
+      sports:true,
+      world:true,
+      politics:false,
+      technology:false,
+      startup:false,
+      entertainment:false,
+      science:false,
+      automobile:false,})
     const [localArchive,setLocalArchive] = useState(false);
-    function onSave(){
+    
+
+  
+    const onSave=()=>{
         let t = [];
-        if(all)
-        { t.push("All")}
-        
-        if(science)
-         { t.push("Science")}
-        if(business)
-        { t.push("Business")}
-        if(national)
-        { t.push("National")}
-        if(sports)
-        {  t.push("Sports")}
-        if(world)
-        {  t.push("World")}
-        if(technology)
-        {  t.push("Technology");}
+        for(let key in newsHeadings ){
+          if(newsHeadings[key])
+          {
+            t.push(`${key[0].toUpperCase()}${key.slice(1)}`)
+          }
+        }
         
         setArchive(localArchive);
         setTopic(t);
@@ -39,31 +49,47 @@ function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) 
           setLocalArchive(archive);
           if(!topic.includes("All"))
           {
-            setAll(false)
+            setNewsHeading(s=>({...s,all:false}))
+          }
+          if(!topic.includes("Automobile"))
+          {
+            setNewsHeading(s=>({...s,automobile:false}))
+          }
+          if(!topic.includes("Entertainment"))
+          {
+            setNewsHeading(s=>({...s,entertainment:false}))
+          }
+          if(!topic.includes("Politics"))
+          {
+            setNewsHeading(s=>({...s,politics:false}))
+          }
+          if(!topic.includes("Startup"))
+          {
+            setNewsHeading(s=>({...s,startup:false}))
           }
           if(!topic.includes("Science"))
           {
-            setScience(false)
+            setNewsHeading(s=>({...s,science:false}))
           }
           if(!topic.includes("Business"))
           {
-            setBusiness(false)
+            setNewsHeading(s=>({...s,business:false}))
           }
           if(!topic.includes("National"))
           {
-            setNational(false)
+            setNewsHeading(s=>({...s,national:false}))
           }
           if(!topic.includes("Sports"))
           {
-            setSports(false)
+            setNewsHeading(s=>({...s,sports:false}))
           }
           if(!topic.includes("World"))
           {
-            setWorld(false)
+            setNewsHeading(s=>({...s,world:false}))
           }
           if(!topic.includes("Technology"))
           {
-            setTechnology(false)
+            setNewsHeading(s=>({...s,technology:false}))
           }
            return () => {
              
@@ -74,59 +100,91 @@ function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) 
           setLocalArchive(archive);
           if(topic.includes("All"))
           {
-            setAll(true)
+            setNewsHeading(s=>({...s,all:true}))
+          }
+          if(topic.includes("Automobile"))
+          {
+            setNewsHeading(s=>({...s,automobile:true}))
+          }
+          if(topic.includes("Entertainment"))
+          {
+            setNewsHeading(s=>({...s,entertainment:true}))
+          }
+          if(topic.includes("Politics"))
+          {
+            setNewsHeading(s=>({...s,politics:true}))
+          }
+          if(topic.includes("Startup"))
+          {
+            setNewsHeading(s=>({...s,startup:true}))
           }
           if(topic.includes("Science"))
           {
-            setScience(true)
+            setNewsHeading(s=>({...s,science:true}))
           }
           if(topic.includes("Business"))
           {
-            setBusiness(true)
+            setNewsHeading(s=>({...s,business:true}))
           }
           if(topic.includes("National"))
           {
-            setNational(true)
+            setNewsHeading(s=>({...s,national:true}))
           }
           if(topic.includes("Sports"))
           {
-            setSports(true)
+            setNewsHeading(s=>({...s,sports:true}))
           }
           if(topic.includes("World"))
           {
-            setWorld(true)
+            setNewsHeading(s=>({...s,world:true}))
           }
           if(topic.includes("Technology"))
           {
-            setTechnology(true)
+            setNewsHeading(s=>({...s,technology:true}))
           }
           if(!topic.includes("All"))
           {
-            setAll(false)
+            setNewsHeading(s=>({...s,all:false}))
+          }
+          if(!topic.includes("Automobile"))
+          {
+            setNewsHeading(s=>({...s,automobile:false}))
+          }
+          if(!topic.includes("Entertainment"))
+          {
+            setNewsHeading(s=>({...s,entertainment:false}))
+          }
+          if(!topic.includes("Politics"))
+          {
+            setNewsHeading(s=>({...s,politics:false}))
+          }
+          if(!topic.includes("Startup"))
+          {
+            setNewsHeading(s=>({...s,startup:false}))
           }
           if(!topic.includes("Science"))
           {
-            setScience(false)
+            setNewsHeading(s=>({...s,science:false}))
           }
           if(!topic.includes("Business"))
           {
-            setBusiness(false)
+            setNewsHeading(s=>({...s,business:false}))
           }
           if(!topic.includes("National"))
           {
-            setNational(false)
+            setNewsHeading(s=>({...s,national:false}))
           }
           if(!topic.includes("Sports"))
           {
-            setSports(false)
+            setNewsHeading(s=>({...s,national:false}))
           }
           if(!topic.includes("World"))
           {
-            setWorld(false)
+            setNewsHeading(s=>({...s,world:false}))
           }
           if(!topic.includes("Technology"))
           {
-            setTechnology(false)
+            setNewsHeading(s=>({...s,technology:false}))
           }
            return () => {
              
@@ -151,49 +209,79 @@ function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) 
           <div>
           <Checkbox 
           className="mt-2.5"
-          checked={all}
+          checked={newsHeadings.all}
           label="All"
-          onChange={()=>setAll(s=>!s)}
-          className="p-5"
+          onChange={()=>setNewsHeading(s=>({...s,all:!s.all}))}
+          className="px-5 py-2.5"
           />
           <Checkbox 
-          checked={science}
-          label="Science"
-          onChange={()=>setScience(s=>!s)}
-          className="p-5"
+          checked={newsHeadings.automobile}
+          label="Automobile"
+          onChange={()=>setNewsHeading(s=>({...s,automobile:!s.automobile}))}
+          className="px-5 py-2.5"
           />
            <Checkbox 
-          checked={business}
+          checked={newsHeadings.business}
           label="Business"
-          onChange={()=>setBusiness(s=>!s)}
-          className="p-5"
+          onChange={()=>setNewsHeading(s=>({...s,business:!s.business}))}
+          className="px-5 py-2.5"
           />
            <Checkbox 
-          checked={national}
+          checked={newsHeadings.entertainment}
+          label="Entertainment"
+          onChange={()=>setNewsHeading(s=>({...s,entertainment:!s.entertainment}))}
+          className="px-5 py-2.5"
+          />
+           <Checkbox 
+          checked={newsHeadings.national}
           label="National"
-          onChange={()=>setNational(s=>!s)}
-          className="p-5"
+          onChange={()=>setNewsHeading(s=>({...s,national:!s.national}))}
+          className="px-5 py-2.5"
           />
+          <Checkbox 
+          checked={newsHeadings.polictis}
+          label="Policitcs"
+          onChange={()=>setNewsHeading(s=>({...s,politics:!s.politics}))}
+          className="px-5 py-2.5"
+          />
+          <Checkbox 
+          checked={newsHeadings.science}
+          label="Science"
+          onChange={()=>setNewsHeading(s=>({...s,science:!s.science}))}
+          className="px-5 py-2.5"
+          />
+          
+          
            <Checkbox 
-          checked={sports}
+          checked={newsHeadings.sports}
           label="Sports"
-          onChange={()=>setSports(s=>!s)}
-          className="p-5"
+          onChange={()=>setNewsHeading(s=>({...s,sports:!s.sports}))}
+          className="px-5 py-2.5"
           />
            <Checkbox 
-          checked={world}
-          label="World"
-          onChange={()=>setWorld(s=>!s)}
-          className="p-5"
+          checked={newsHeadings.startup}
+          label="Startup"
+          onChange={()=>setNewsHeading(s=>({...s,startup:!s.startup}))}
+          className="px-5 py-2.5"
           />
            <Checkbox 
-          checked={technology}
+          checked={newsHeadings.technology}
           label="Technology"
-          onChange={()=>setTechnology(s=>!s)}
-          className="p-5"
+          onChange={()=>setNewsHeading(s=>({...s,technology:!s.technology}))}
+          className="px-5  py-2.5"
           
           />
            <Checkbox 
+          checked={newsHeadings.world}
+          label="World"
+          onChange={()=>setNewsHeading(s=>({...s,world:!s.world}))}
+          className="px-5 py-2.5"
+          />
+         
+          </div>
+          <div className="w-full ">
+          <hr/>
+          <Checkbox 
           checked={localArchive}
           label="Include archived articles."
           onChange={()=>setLocalArchive(s=>!s)}
@@ -201,10 +289,7 @@ function SidePane({showFilter,setShowFilter,setTopic,topic,archive,setArchive}) 
           
           />
           
-          </div>
-          <div className="w-full ">
-
-          <hr/>
+          
           </div>
         </Pane.Body>
         <Pane.Footer className="flex items-center space-x-2">
